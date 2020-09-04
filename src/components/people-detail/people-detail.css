@@ -1,0 +1,17 @@
+.people-detail{
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.people-detail .people-image{
+    width: 150px;
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 15px;
+}
+.people-detail .list-group .list-group-item{
+    border-style: none none solid none;
+    padding: 7px 1.25rem;
+}
