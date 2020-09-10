@@ -7,7 +7,7 @@ export default class PeopleDatail extends Component{
     render(){
         return(
             <div className='people-detail jumbotron rounded'>
-            <img className='people-image' src='https://starwars-visualguide.com/assets/img/characters/3.jpg'/>
+            <img className='people-image' src='https://starwars-visualguide.com/assets/img/characters/3.jpg' alt=''/>
             <div>
             <h4>
                R2-D2

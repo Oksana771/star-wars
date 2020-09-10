@@ -1,0 +1,20 @@
+.planet-detail{
+    display: flex;
+    padding: 15px;
+    align-items: flex-end;
+}
+
+.planet-detail .planet-image{
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+    border-radius: 15px;
+   
+}
+.planet-detail .list-group{
+    margin: 10px 0 0 10px;
+}
+.planet-detail .list-group .list-group-item{
+    border-style: none none solid none;
+    padding: 7px 1.25rem;
+}
