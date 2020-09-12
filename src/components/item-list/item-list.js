@@ -7,21 +7,127 @@ import Spinner from '../spinner/spinner';
 export default class ItemList extends Component{
     swapiServise=new SwapiService();//запит на сервіс
 
-    state={
+   /*state={
+       starshipList:[]
+    }
+    componentDidMount(){//метод виконує запит і витягує дані
+        this.swastarshipList)=>{
+          // console.log(planetList)
+            this.setState({
+                starshipList
+            }); //оновлюємо список
+        });
+
+  }*/
+  renderItem=(arr)=>{
+       console.log(arr)
+      return  arr.map(({id, name}) => {
+       
+           return(
+               <li  className='list-group-item'
+                  key={id}
+                  onClick={()=>this.props.onItemSelected(id)}>
+                  {name}
+               </li>
+           );
+       });
+}
+   render(){  
+      const {data}=this.props;
+
+      if(!data){
+          return<Spinner/>;
+     }
+      const itemList=this.renderItem(data);
+      //console.log(itemList)
+    return(
+       <div className='item-list'>
+             <ul className='list-group'>
+                {itemList}
+                </ul>
+      </div>
+    )
+     
+    }
+   
+}
+
+
+
+
+
+
+
+    
+
+
+   /* state={
+        peopleList:null
+    }
+    componentDidMount(){//метод виконує запит і витягує дані
+        this.swapiServise.getAllPeople()
+        .then(( peopleList)=>{
+          // console.log(planetList)
+            this.setState({
+                peopleList
+            }); //оновлюємо список
+        });
+   
+  }
+  renderItem(peopleList){
+       // console.log(peopleList)
+      return peopleList.map(({id, name}) => {
+       
+           return(
+               <li  className='list-group-item'
+                  key={id}
+                  onClick={()=>this.props.onItemSelected(id)}>
+                  {name}
+               </li>
+           );
+       });
+}
+   render(){  
+      const {peopleList}=this.state;
+
+      if(!peopleList){
+          return<Spinner/>;
+     }
+      const itemList=this.renderItem(peopleList);
+      //console.log(itemList)
+    return(
+       <div className='item-list'>
+             <ul className='list-group'>
+                {itemList}
+                </ul>
+      </div>
+    )
+     
+    }
+   
+}
+
+
+
+
+
+
+
+   state={
         planetList:null
     }
     componentDidMount(){//метод виконує запит і витягує дані
         this.swapiServise.getAllPlanets()
         .then((planetList)=>{
-           // console.log(planetList)
+          // console.log(planetList)
             this.setState({
                 planetList
             }); //оновлюємо список
         });
    
   }
-  itemList(planetList){
-        // console.log(planetList)
+  renderItem(planetList){
+        console.log(planetList)
       return planetList.map(({id, name}) => {
        
            return(
@@ -39,18 +145,19 @@ export default class ItemList extends Component{
       if(!planetList){
           return<Spinner/>;
      }
-      const list=this.itemList(planetList);
+      const itemList=this.renderItem(planetList);
+      console.log(itemList)
     return(
        <div className='item-list'>
              <ul className='list-group'>
-                {list}
+                {itemList}
                 </ul>
       </div>
     )
      
     }
    
-}
+}*/
     
     
 

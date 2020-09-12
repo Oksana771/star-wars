@@ -5,22 +5,21 @@ import './header.css';
 
 export default class Header extends Component{
     buttons=[
-        {name:'People',label:'People'},
-        {name:'Planets',label:'Planets'},
-        {name:'Starships',label:'Starships'}
+        {name:'people',label:'People'},
+        {name:'planet',label:'Planets'},
+        {name:'starship',label:'Starships'}
     ]
     
 
     render(){
-        const{filter,onFilterChange}=this.props;
+        const{onFilterChange}=this.props;
 
         const buttons=this.buttons.map(({name,label})=>{
-            const isActive=filter===name;//створили зміну та записали якщо filter тоді = name
-            const clazz=isActive ? 'header':'btn btn-link'//якщо true має клас btn-info
+           
         
         return(
-            <button type='button'
-            className={`btn ${clazz}`} key={name}
+            <button 
+            className='btn btn-link' key={name}
            onClick={()=>onFilterChange(name)}
          >{label}</button>
         )

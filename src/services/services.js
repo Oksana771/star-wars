@@ -6,14 +6,17 @@ export default class SwapiService{ //запит на сервер та отри�
     return await res.json();
     }
      getAllPeople=async()=>{
-     const allpeople=await this.getRsource(' /people/');
-      return allpeople.results.map(this.transformPeople)
+      
+     const allpeople=await this.getResource('/people/');
+    return allpeople.results.map(this.transformPeople);
    
     }
      getPeople=async(id)=>{
 
       const people=await this.getResource(`/people/${id}`);
+      
       return this.transformPeople(people)
+      
     }
     getAllPlanets=async()=>{
       const allplanet= await this.getResource('/planets/');
@@ -52,9 +55,9 @@ export default class SwapiService{ //запит на сервер та отри�
       id:this.extractId(people),
        name:people.name,
        gender:people.gender,
-       birth_year:people.birth_year,
-       eye_color:people.eye_color,
-       hair_color:people.hair_color,
+       birthYear:people.birth_year,
+       eyeColor:people.eye_color,
+       hairColor:people.hair_color,
        height:people.height,
        mass:people.mass
 
@@ -67,7 +70,7 @@ export default class SwapiService{ //запит на сервер та отри�
          model:starship.model,
        name:starship.name,
        manufacturer:starship.manufacturer,
-       starship_class:starship.starship_class,
+       starshipClass:starship.starship_class,
        speed:starship.max_atmosphering_speed,
        hyperdrive_rating:starship.hyperdrive_rating,
        length:starship.length,
