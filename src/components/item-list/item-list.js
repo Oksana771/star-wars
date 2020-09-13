@@ -5,7 +5,7 @@ import Spinner from '../spinner/spinner';
 
 
 export default class ItemList extends Component{
-    swapiServise=new SwapiService();//запит на сервіс
+    swapiService=new SwapiService();//запит на сервіс
 
    /*state={
        starshipList:[]
@@ -20,7 +20,7 @@ export default class ItemList extends Component{
 
   }*/
   renderItem=(arr)=>{
-       console.log(arr)
+       //console.log(arr)
       return  arr.map(({id, name}) => {
        
            return(

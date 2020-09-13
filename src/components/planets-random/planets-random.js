@@ -7,7 +7,7 @@ import Spinner from '../spinner/spinner';
 
 export default class PlanetRandom extends Component{ //імпортуємо клас
 
-    swapiServise=new SwapiService();//запит на сервіс
+    swapiService=new SwapiService();//запит на сервіс
 
     state={ //створили обєкт з інформацією
         planet:{},//записали пустий обєкт
@@ -41,7 +41,7 @@ onPlanetLoaded=(planet)=>{
     updatePlanet=()=>{ //створили функцію з запитом на сервіс
         const id=Math.floor(Math.random()*20)+3;//створили змінну з номером планети
         //console.log(id)
-        this.swapiServise.getPlanet(id) //передали значення id
+        this.swapiService.getPlanet(id) //передали значення id
         .then(this.onPlanetLoaded)
             } 
 

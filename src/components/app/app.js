@@ -5,28 +5,39 @@ import SwapiService from '../../services/services'
 import './app.css';
 import Header from '../header';
 import ItemList from '../item-list';
-//import PlanetDetail from '../planet-detail';
-//import PeopleDatail from '../people-detail';
+import PlanetDetail from '../planet-detail';
+import PeopleDatail from '../people-detail';
 import StarShip from '../starship';
 import ErrorButton from '../error-button';
 import ErrorIndicator from '../error-indicator';
 export default class App extends Component{ //функція повертає компоненти
     swapiService=new SwapiService();
+detail=null;
 state={
     data:null,
    // planetList:null,
-   // selectedPlanet:5,
+    //selectedPlanet:5,
    // selectedPeople:1,
     selectedStarship:5,
     hasError:false,
     name:'starship'
 }
-
+/*Bond=()=>{
+    this.swapiService.getAllPeople()
+    .then(( data)=>{
+     // console.log(data)
+        this.setState({
+            data
+        })
+    })
+    console.log(this.state.data)
+    return this.state.data
+}*/
 onItemSelected=(id)=>{//функція має змінювати id
     //console.log(id)
     this.setState({
-     //   selectedPlanet:id,
-     //  selectedPeople:id,
+      // selectedPlanet:id,
+    //  selectedPeople:id,
       selectedStarship:id
 
     });
@@ -44,14 +55,14 @@ onFilterChange=(name)=>{
         name
        
     })
-
+//this.showData(this.state.name)
    
    
    //console.log(this.state.data)
       }
 showData=(name)=>{
   //  console.log(name)
-    switch(name){
+   switch(name){
         case 'people':{
             this.swapiService.getAllPeople()
             .then(( data)=>{
@@ -59,7 +70,8 @@ showData=(name)=>{
                 this.setState({
                     data
                 })
-                
+                this.detail=<PeopleDatail peopleId={this.state.selectedPeople}/*передаємо значення*//>
+                return this.state.data
             }) 
            break; 
         }
@@ -70,6 +82,8 @@ showData=(name)=>{
                 this.setState({
                    data
                 })
+                this.detail=<PlanetDetail planetId={this.state.selectedPlanet}/*передаємо значення*//>
+                return this.state.data
             })
             break;
         }
@@ -80,12 +94,16 @@ showData=(name)=>{
                 this.setState({
                     data
                 })
+                this.detail= <StarShip  starshipId={this.state.selectedStarship}/>
+                console.log(this.state.data)
+                return this.state.data
             })
             break;
     
         }
     }
 }
+
     
     
       
@@ -95,7 +113,8 @@ showData=(name)=>{
        if(this.state.hasError){
            return <ErrorIndicator/>
        }
-       const {data}=this.state;
+       const data=this.showData(this.state.name);
+      // const data=this.Bond();
        return(
         
         <div className='container'>
@@ -112,8 +131,8 @@ showData=(name)=>{
                  data={data}/>
                  </div> 
                  <div className='col-6' >
-                 <StarShip  starshipId={this.state.selectedStarship}/>
-                
+                {this.detail}
+               
                 </div>
              </div>
         </div>
@@ -123,8 +142,9 @@ showData=(name)=>{
 }
 //export default App;
 
-//<PlanetDetail planetId={this.state.selectedPlanet}/*передаємо значення*//>
+//
 //PeopleDatail peopleId={this.state.selectedPeople}
 
 // <PlanetDetail planetId={this.state.selectedPlanet}/*передаємо значення*//>
-//<PeopleDatail peopleId={this.state.selectedPeople}/>
+//  <PeopleDatail peopleId={this.state.selectedPeople}/>
+             //   <PlanetDetail planetId={this.state.selectedPlanet}/*передаємо значення*//>
