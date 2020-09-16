@@ -7,39 +7,39 @@ export default class SwapiService{ //запит на сервер та отри�
     }
      getAllPeople=async()=>{
       
-     const allpeople=await this.getResource('/people/');
-    return allpeople.results.map(this.transformPeople);
+     const res=await this.getResource('/people/');
+    return res.results.map(this.transformPeople);
    
-    }
+    };
      getPeople=async(id)=>{
 
       const people=await this.getResource(`/people/${id}`);
       
-      return this.transformPeople(people)
+      return this.transformPeople(people);
       
-    }
+    };
     getAllPlanets=async()=>{
-      const allplanet= await this.getResource('/planets/');
-      return allplanet.results.map(this.transformPlanet);
-    }
+      const res= await this.getResource('/planets/');
+      return res.results.map(this.transformPlanet).slice(1);
+    };
      getPlanet=async(id)=>{
       const planet=await this.getResource(`/planets/${id}`);//зтворили змінну з запитом на сервер
 
       return this.transformPlanet(planet) //зробили трансформацію даних
 
-    }
+    };
      getAllShips= async()=>{
-       const allship=await this.getResource('/starships/');
-      return  allship.results.map(this.transformStarship)
-    }
+       const res=await this.getResource('/starships/');
+      return  res.results.map(this.transformStarship)
+    };
      getShip= async(id)=>{
        const ship=await this.getResource(`/starships/${id}`);
       return this.transformStarship(ship)  
-    }
+    };
     extractId(item){ //функція яка повертає id
       const regid=/\/([0-9]*)\/$/;
       return item.url.match(regid)[1];
-    }
+    };
     transformPlanet=(planet)=>{ //зробили функцію трансформацію яка повертає новий обєкт
   return{
     id:this.extractId(planet),
@@ -47,8 +47,8 @@ export default class SwapiService{ //запит на сервер та отри�
     population:planet.population,
     rotationPeriod:planet.rotation_period,
     diameter:planet.diameter           
-    }
-  }
+    };
+  };
  
   transformPeople=(people)=>{ //зробили функцію трансформацію яка повертає новий обєкт
     return{
@@ -62,8 +62,8 @@ export default class SwapiService{ //запит на сервер та отри�
        mass:people.mass
 
            
-      }
-    }
+      };
+    };
     transformStarship=(starship)=>{ //зробили функцію трансформацію яка повертає новий обєкт
       return{
         id:this.extractId(starship),
@@ -76,8 +76,8 @@ export default class SwapiService{ //запит на сервер та отри�
        length:starship.length,
        crew:starship.crew,
        passengers:starship.passengers         
-        }
-      }
+        };
+      };
   }
   
 

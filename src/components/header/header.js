@@ -18,12 +18,13 @@ export default class Header extends Component{
            
         
         return(
-            <button 
-            className='btn btn-link' key={name}
-           onClick={()=>onFilterChange(name)}
-         >{label}</button>
+            <button  className='btn btn-link' key={name}
+             onClick={()=>onFilterChange(name)} >
+        {label}
+        </button>
         )
     })
+         
 
         return(
             <div className='header d-flex  align-items-center '>

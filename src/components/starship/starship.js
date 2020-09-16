@@ -6,15 +6,15 @@ import ErrorIndicator from '../error-indicator';
 export default class StarShip extends Component{
     swapiService=new SwapiService();
     state={
-        starship:[],
+        starship:null,
         hasError:false
     }
     componentDidMount(){
         this.updataStarShip();
     }
-    componentWillUnmount(){//використовуємо для очистки або видалення даних
-        clearInterval(this.interval)
-    }
+    //componentWillUnmount(){//використовуємо для очистки або видалення даних
+      //  clearInterval(this.interval)
+   // }
     componentDidUpdate(prevProps){//оновлює попередній props,використовуємо коли міняються дані
         if(this.props.starshipId!==prevProps.starshipId){
             this.updataStarShip();
@@ -27,13 +27,16 @@ export default class StarShip extends Component{
         if(!starshipId){
             return;
         }
-        this.swapiService.getShip(starshipId)
-        .then((starship)=>{
-            this.setState({starship})
-        })
+     //   this.swapiService.getShip(starshipId)
+     //   .then((starship)=>{
+        //    this.setState({starship})
+     //   })
     }
     render(){
-        const {name,id,model,manufacturer,starshipClass,speed,hyperdriveRating,length,crew,passengers }=this.state.starship
+        if(!this.state.starship){
+            return <span>Selected Starship</span>
+        }
+        const {name,id,model,manufacturer,starshipClass,speed,hyperdrive_rating,length,crew,passengers }=this.state.starship
         if(this.state.hasError){
             return <ErrorIndicator/>
         }
@@ -65,7 +68,7 @@ return(
            </li>
            <li className='list-group-item'>
                <span  className='tern'>Hyperdrive rating: </span>
-               <span>{hyperdriveRating}</span>
+               <span>{hyperdrive_rating}</span>
            </li>
            <li className='list-group-item'>
                <span  className='tern'>Length: </span>

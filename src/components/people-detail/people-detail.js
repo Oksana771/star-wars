@@ -6,8 +6,8 @@ import ErrorIndicator from '../error-indicator';
 
 export default class PeopleDatail extends Component{
     swapiService=new SwapiService();
-    state={
-        people:[],
+   state={
+        people:null,
         hasError:false
     }
     componentDidMount(){
@@ -28,13 +28,16 @@ export default class PeopleDatail extends Component{
         if(!peopleId){
             return;
         }
-        this.swapiService.getPeople(peopleId)
+      /*  this.swapiService.getPeople(peopleId)
         .then((people)=>{
             this.setState({people})
           
-        })
+        })*/
     }
     render(){
+        if(!this.state.people){
+            return <span>Selected People</span>
+        }
         const {name,id,gender,birthYear,eyeColor,hairColor,height,mass }=this.state.people
         if(this.state.hasError){
             return <ErrorIndicator/>

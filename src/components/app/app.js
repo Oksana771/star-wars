@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-
-import RandomPlanet from'../planets-random';
-import SwapiService from '../../services/services'
 import './app.css';
+
+//import RandomPlanet from'../planets-random';
+import SwapiService from '../../services/services'
+
 import Header from '../header';
 import ItemList from '../item-list';
 import PlanetDetail from '../planet-detail';
@@ -10,6 +11,7 @@ import PeopleDatail from '../people-detail';
 import StarShip from '../starship';
 import ErrorButton from '../error-button';
 import ErrorIndicator from '../error-indicator';
+
 export default class App extends Component{ //функція повертає компоненти
     swapiService=new SwapiService();
 detail=null;
@@ -18,27 +20,17 @@ state={
    // planetList:null,
     //selectedPlanet:5,
    // selectedPeople:1,
-    selectedStarship:5,
+    selectedPlanet:5,
     hasError:false,
-    name:'starship'
+    name:'people'
 }
-/*Bond=()=>{
-    this.swapiService.getAllPeople()
-    .then(( data)=>{
-     // console.log(data)
-        this.setState({
-            data
-        })
-    })
-    console.log(this.state.data)
-    return this.state.data
-}*/
+
 onItemSelected=(id)=>{//функція має змінювати id
     //console.log(id)
     this.setState({
-      // selectedPlanet:id,
+       selectedPlanet:id,
     //  selectedPeople:id,
-      selectedStarship:id
+      //selectedStarship:id
 
     });
 }
@@ -54,7 +46,7 @@ onFilterChange=(name)=>{
     this.setState({ 
         name
        
-    })
+    });
 //this.showData(this.state.name)
    
    
@@ -70,10 +62,10 @@ showData=(name)=>{
                 this.setState({
                     data
                 })
-                this.detail=<PeopleDatail peopleId={this.state.selectedPeople}/*передаємо значення*//>
+                this.detail=<PeopleDatail planetId={this.state.selectedPlanet}/*передаємо значення*//>
                 return this.state.data
             }) 
-           break; 
+          
         }
         case 'planet':{
             this.swapiService.getAllPlanets()
@@ -82,10 +74,10 @@ showData=(name)=>{
                 this.setState({
                    data
                 })
-                this.detail=<PlanetDetail planetId={this.state.selectedPlanet}/*передаємо значення*//>
+                this.detail= <PlanetDetail planetId={this.state.selectedPlanet}/*передаємо значення*//>
                 return this.state.data
             })
-            break;
+           
         }
         case 'starship':{
             this.swapiService.getAllShips()
@@ -94,11 +86,11 @@ showData=(name)=>{
                 this.setState({
                     data
                 })
-                this.detail= <StarShip  starshipId={this.state.selectedStarship}/>
-                console.log(this.state.data)
+                this.detail= <StarShip  planetId={this.state.selectedPlanet}/>
+               // console.log(this.state.data)
                 return this.state.data
             })
-            break;
+           
     
         }
     }
@@ -120,7 +112,7 @@ showData=(name)=>{
         <div className='container'>
             <Header
           onFilterChange={this.onFilterChange}/>
-          <RandomPlanet/>
+         { /*<RandomPlanet/>*/}
           <ErrorButton/>
            <div className='row'>
                  <div className='col-6'>    

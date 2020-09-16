@@ -20,7 +20,7 @@ export default class ItemList extends Component{
 
   }*/
   renderItem=(arr)=>{
-       //console.log(arr)
+       console.log(arr)
       return  arr.map(({id, name}) => {
        
            return(
@@ -39,7 +39,7 @@ export default class ItemList extends Component{
           return<Spinner/>;
      }
       const itemList=this.renderItem(data);
-      //console.log(itemList)
+      console.log(itemList)
     return(
        <div className='item-list'>
              <ul className='list-group'>

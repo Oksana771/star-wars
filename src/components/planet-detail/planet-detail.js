@@ -7,15 +7,15 @@ import ErrorIndicator from '../error-indicator';
 export default class PlanetDetail extends Component{
     swapiService=new SwapiService();
     state={
-        planet:[],
+        planet:null,
         hasError:false
     }
     componentDidMount(){
         this.updataPlanet();
     }
-    componentWillUnmount(){//використовуємо для очистки або видалення даних
-        clearInterval(this.interval)
-    }
+   // componentWillUnmount(){//використовуємо для очистки або видалення даних
+       // clearInterval(this.interval)
+   // }
     componentDidUpdate(prevProps){//оновлює попередній props,використовуємо коли міняються дані
         if(this.props.planetId!==prevProps.planetId){
             this.updataPlanet();
@@ -28,12 +28,15 @@ export default class PlanetDetail extends Component{
         if(!planetId){
             return;
         }
-        this.swapiService.getPlanet(planetId)
+       this.swapiService.getPlanet(planetId)
         .then((planet)=>{
-            this.setState({planet})
+           this.setState({planet})
         })
     }
     render(){
+        if(!this.state.planet){
+            return <span>Selected Planet</span>
+        }
         const {name,id,population,diameter,rotationPeriod }=this.state.planet
         if(this.state.hasError){
             return <ErrorIndicator/>
